@@ -1,0 +1,11 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appID": "L39YW86E89.de.michael-mueller-verlag.mmtravel-app",
+        "paths": [ "/qr-code-mmv/mobile*" ]
+      }
+    ]
+  }
+}

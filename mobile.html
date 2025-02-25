@@ -8,14 +8,33 @@
         document.addEventListener("DOMContentLoaded", function() {
             var userAgent = navigator.userAgent || navigator.vendor || window.opera;
 
-            // iOS
-            if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-                window.location.href = "https://apps.apple.com/app/id1208542183";
+            // Get the current URL, including query parameters
+            var currentUrl = window.location.href;
+
+            // Create links with the current URL
+            var iOSAppLink = currentUrl; // Universal link for iOS
+            var androidAppLink = "intent://" + currentUrl.replace(/^https?:\/\//, '') + 
+                                 "#Intent;scheme=https;package=mmv.mmtravelE;end;"; // Intent link for Android
+
+            function openAppOrRedirect(appLink, storeLink) {
+                window.location.href = appLink;
+
+                // If the app is not installed, redirect to the store after 1.5 seconds
+                setTimeout(function() {
+                    window.location.href = storeLink;
+                }, 1500);
             }
-            // Android
+
+            // Handle iOS devices
+            if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
+                openAppOrRedirect(iOSAppLink, "https://apps.apple.com/app/id1208542183");
+            }
+            // Handle Android devices
             else if (/android/i.test(userAgent)) {
-                window.location.href = "https://play.google.com/store/apps/details?id=mmv.mmtravelE";
-            } else {
+                openAppOrRedirect(androidAppLink, "https://play.google.com/store/apps/details?id=mmv.mmtravelE");
+            } 
+            // Redirect other devices to a fallback website
+            else {
                 window.location.href = "https://www.michael-mueller-verlag.de";
             }
         });

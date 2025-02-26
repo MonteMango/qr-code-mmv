@@ -25,12 +25,12 @@
 
             console.log("Redirecting to:", universalLink);
 
-            window.location.href = universalLink;
-
             setTimeout(function () {
                 console.log("hello from setTimeout");
                 window.location.href = storeLink;
             }, 2000);
+
+            window.location.href = universalLink;
         });
     </script>
 </head>

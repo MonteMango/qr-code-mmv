@@ -1,13 +1,21 @@
+/* Apply gradient background to the entire page */
+html {
+    min-height: 100%;
+    background: linear-gradient(to bottom, #092c69, #650969);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
 body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    background: linear-gradient(to bottom, #092c69, #650969);
+    min-height: 100vh;
     margin: 0;
     font-family: Arial, sans-serif;
 }
 
+/* QR container styling */
 .qr-container {
     display: flex;
     justify-content: center;
@@ -23,28 +31,33 @@ body {
     height: auto;
 }
 
+/* Container styling for mobile.html */
 .container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    text-align: center;
     background: white;
-    padding: 15px;
+    padding: 20px;
     border-radius: 10px;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    max-width: 90%;
+    margin: 20px;
 }
 
+/* Title styling */
 .title {
     font-size: 24px;
     font-weight: bold;
     margin-bottom: 20px;
 }
 
+/* Button container styling */
 .button-container {
     display: flex;
     flex-direction: column;
     gap: 15px;
+    align-items: center;
 }
 
+/* Download button styling */
 .download-button {
     display: inline-block;
     padding: 12px 20px;
@@ -53,20 +66,24 @@ body {
     text-align: center;
     border-radius: 8px;
     text-decoration: none;
-    width: 240px;
-    transition: 0.3s;
+    width: 80%;
+    max-width: 300px;
+    transition: background-color 0.3s ease;
 }
 
+/* App Store button specific styling */
 .appstore {
     background-color: #007AFF;
     color: white;
 }
 
+/* Google Play button specific styling */
 .googleplay {
     background-color: #34A853;
     color: white;
 }
 
+/* Hover effect for download buttons */
 .download-button:hover {
-    opacity: 0.8;
+    opacity: 0.9;
 }

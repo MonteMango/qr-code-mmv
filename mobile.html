@@ -7,53 +7,18 @@
     <script type="text/javascript">
         document.addEventListener("DOMContentLoaded", function() {
             var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+            var storeLink = "https://www.michael-mueller-verlag.de"; // Default fallback
 
-            // Get the current URL, including query parameters
-            var currentUrl = window.location.href;
-
-            // Create links with the current URL
-            var iOSAppLink = currentUrl; // Universal link for iOS
-            var androidAppLink = "intent://" + currentUrl.replace(/^https?:\/\//, '') + 
-                                 "#Intent;scheme=https;package=mmv.mmtravelE;end;"; // Intent link for Android
-
-            function openAppOrRedirect(appLink, storeLink) {
-                var isIOS = /iPad|iPhone|iPod/.test(userAgent) && !window.MSStream;
-                
-                if (isIOS) {
-                    // Create a hidden link element and trigger a click instead of direct redirection
-                    var link = document.createElement("a");
-                    link.href = appLink;
-                    link.style.display = "none";
-                    document.body.appendChild(link);
-                    link.click();
-
-                    // Redirect to the App Store after a delay if the app is not installed
-                    setTimeout(function() {
-                        window.location.href = storeLink;
-                    }, 1500);
-                } else {
-                    // Standard redirect for other devices
-                    window.location.href = appLink;
-
-                    // Redirect to the Play Store after a delay if the app is not installed
-                    setTimeout(function() {
-                        window.location.href = storeLink;
-                    }, 1500);
-                }
-            }
-
-            // Handle iOS devices
             if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-                openAppOrRedirect(iOSAppLink, "https://apps.apple.com/app/id1208542183");
+                storeLink = "https://apps.apple.com/app/id1208542183";
+            } else if (/android/i.test(userAgent)) {
+                storeLink = "https://play.google.com/store/apps/details?id=mmv.mmtravelE";
             }
-            // Handle Android devices
-            else if (/android/i.test(userAgent)) {
-                openAppOrRedirect(androidAppLink, "https://play.google.com/store/apps/details?id=mmv.mmtravelE");
-            } 
-            // Redirect other devices to a fallback website
-            else {
-                window.location.href = "https://www.michael-mueller-verlag.de";
-            }
+
+            // Wait 2 seconds, then redirect if the app didn't open
+            setTimeout(function() {
+                window.location.href = storeLink;
+            }, 2000);
         });
     </script>
 </head>

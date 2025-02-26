@@ -7,7 +7,7 @@
 </head>
 <body>
     <script type="text/javascript">
-        document.addEventListener("DOMContentLoaded", function() {
+        document.addEventListener("DOMContentLoaded", function () {
             var userAgent = navigator.userAgent || navigator.vendor || window.opera;
             var currentUrl = window.location.href;
             var urlParams = new URLSearchParams(window.location.search);
@@ -23,20 +23,16 @@
             var playStoreLink = "https://play.google.com/store/apps/details?id=mmv.mmtravelE";
             var storeLink = /iPad|iPhone|iPod/.test(userAgent) ? appStoreLink : playStoreLink;
 
-            // 🚀 **Заранее запускаем таймер, который через 2 секунды отправит пользователя в магазин**
-            var redirectTimer = setTimeout(function() {
+            // **Создаем iframe для открытия Universal Link**
+            var iframe = document.createElement("iframe");
+            iframe.style.display = "none";
+            document.body.appendChild(iframe);
+            iframe.src = universalLink;
+
+            // **Ждем 2 секунды, если приложение не открылось – редиректим в магазин**
+            setTimeout(function () {
                 window.location.href = storeLink;
             }, 2000);
-
-            // 🌐 **Перенаправляем пользователя на Universal Link (может открыть приложение)**
-            window.location.href = universalLink;
-
-            // 🛑 **Если приложение открылось, мы отменяем редирект в магазин**
-            document.addEventListener("visibilitychange", function() {
-                if (document.hidden) {
-                    clearTimeout(redirectTimer); // Отменяем редирект в App Store / Google Play
-                }
-            });
         });
     </script>
 </body>

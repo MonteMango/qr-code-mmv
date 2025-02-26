@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Redirecting...</title>
 </head>
+
 <body>
     <script type="text/javascript">
         document.addEventListener("DOMContentLoaded", function () {
@@ -12,26 +14,43 @@
             var currentUrl = window.location.href;
             var urlParams = new URLSearchParams(window.location.search);
 
+            // Base Universal Link
             var baseUniversalLink = "https://bejewelled-alfajores-fe0e2f.netlify.app/open-app?redirect=fake";
-            var universalLink = baseUniversalLink;
-
-            if (urlParams.toString()) {
-                universalLink += "&" + urlParams.toString();
-            }
+            // Append query parameters from the current URL
+            var universalLink = baseUniversalLink + (urlParams.toString() ? "&" + urlParams.toString() : "");
+            var urlScheme = "mmtravel://open-app"; // **Fallback URL Scheme for direct app opening**
 
             var appStoreLink = "https://apps.apple.com/app/id1208542183";
-            var playStoreLink = "https://play.google.com/store/apps/details?id=mmv.mmtravel";
+            var playStoreLink = "https://play.google.com/store/apps/details?id=mmv.mmtravelE";
             var storeLink = /iPad|iPhone|iPod/.test(userAgent) ? appStoreLink : playStoreLink;
 
+            var startTime = Date.now();
+
+            // **1. Attempt to open the app via Universal Link using an iframe**
             var iframe = document.createElement("iframe");
             iframe.style.display = "none";
             document.body.appendChild(iframe);
             iframe.src = universalLink;
 
+            // **2. After 1 second, try opening the app using the URL Scheme (if Universal Link fails)**
             setTimeout(function () {
+                window.location.href = urlScheme;
+            }, 1000);
+
+            // **3. After 2 seconds, check if the app opened**
+            setTimeout(function () {
+                var elapsedTime = Date.now() - startTime;
+
+                if (elapsedTime < 1500) {
+                    // If the user has left the browser (app opened), cancel the redirect to the app store.
+                    return;
+                }
+
+                // **4. If the app did not open, redirect the user to the App Store / Google Play**
                 window.location.href = storeLink;
             }, 2000);
         });
     </script>
 </body>
+
 </html>

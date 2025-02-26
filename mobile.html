@@ -20,16 +20,14 @@
             }
 
             var appStoreLink = "https://apps.apple.com/app/id1208542183";
-            var playStoreLink = "https://play.google.com/store/apps/details?id=mmv.mmtravelE";
+            var playStoreLink = "https://play.google.com/store/apps/details?id=mmv.mmtravel";
             var storeLink = /iPad|iPhone|iPod/.test(userAgent) ? appStoreLink : playStoreLink;
 
-            // **Создаем iframe для открытия Universal Link**
             var iframe = document.createElement("iframe");
             iframe.style.display = "none";
             document.body.appendChild(iframe);
             iframe.src = universalLink;
 
-            // **Ждем 2 секунды, если приложение не открылось – редиректим в магазин**
             setTimeout(function () {
                 window.location.href = storeLink;
             }, 2000);

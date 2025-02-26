@@ -1,24 +1,47 @@
-body {
+.container {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background: linear-gradient(to bottom, #092c69, #650969);
-    margin: 0;
-    font-family: Arial, sans-serif;
+    text-align: center;
+    color: white;
 }
 
-.qr-container {
+.title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.button-container {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    background: white;
-    padding: 15px;
-    border-radius: 10px;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    flex-direction: column;
+    gap: 15px;
 }
 
-.qr-container img {
-    max-width: 200px;
-    height: auto;
+.download-button {
+    display: inline-block;
+    padding: 12px 20px;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 8px;
+    text-decoration: none;
+    width: 240px;
+    transition: 0.3s;
+}
+
+.appstore {
+    background-color: #007AFF;
+    color: white;
+}
+
+.googleplay {
+    background-color: #34A853;
+    color: white;
+}
+
+.download-button:hover {
+    opacity: 0.8;
 }

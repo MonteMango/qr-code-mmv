@@ -14,29 +14,38 @@
             var currentUrl = window.location.href;
             var urlParams = new URLSearchParams(window.location.search);
 
-            // Base Universal Link
             var baseUniversalLink = "https://bejewelled-alfajores-fe0e2f.netlify.app/open-app?redirect=fake";
             var universalLink = baseUniversalLink + (urlParams.toString() ? "&" + urlParams.toString() : "");
-
-            var urlScheme = "mmtravel://open-app"; // **Fallback URL Scheme**
 
             var appStoreLink = "https://apps.apple.com/app/id1208542183";
             var playStoreLink = "https://play.google.com/store/apps/details?id=mmv.mmtravelE";
             var storeLink = /iPad|iPhone|iPod/.test(userAgent) ? appStoreLink : playStoreLink;
 
             var startTime = Date.now();
+            var newTab;
 
-            // **1. Open the Universal Link in a new tab**
-            var newTab = window.open(universalLink, "_blank");
+            try {
+                // **1. Try opening the Universal Link in a new tab**
+                newTab = window.open(universalLink, "_blank");
 
-            // **2. If the new tab could not be opened (blocked by browser), try URL Scheme**
-            setTimeout(function () {
-                if (!newTab || newTab.closed) {
-                    window.location.href = urlScheme;
-                }
-            }, 1000);
+                // **2. If the new tab failed to open (blocked), use iframe instead**
+                setTimeout(function () {
+                    if (!newTab || newTab.closed || typeof newTab.closed === "undefined") {
+                        var iframe = document.createElement("iframe");
+                        iframe.style.display = "none";
+                        iframe.src = universalLink;
+                        document.body.appendChild(iframe);
+                    }
+                }, 1000);
+            } catch (e) {
+                // **If `window.open()` fails immediately, fallback to iframe**
+                var iframe = document.createElement("iframe");
+                iframe.style.display = "none";
+                iframe.src = universalLink;
+                document.body.appendChild(iframe);
+            }
 
-            // **3. After 2 seconds, check if the user is still on the page**
+            // **3. After 2 seconds, check if the app opened; if not, redirect to store**
             setTimeout(function () {
                 var elapsedTime = Date.now() - startTime;
 

@@ -1,28 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Redirecting...</title>
-    <!-- <script type="text/javascript">
-        document.addEventListener("DOMContentLoaded", function() {
+    <script type="text/javascript">
+        document.addEventListener("DOMContentLoaded", function () {
             var userAgent = navigator.userAgent || navigator.vendor || window.opera;
-            var storeLink = "https://www.michael-mueller-verlag.de"; // Default fallback
+            var currentUrl = window.location.href;
+            var urlParams = new URLSearchParams(window.location.search);
 
-            if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-                storeLink = "https://apps.apple.com/app/id1208542183";
-            } else if (/android/i.test(userAgent)) {
-                storeLink = "https://play.google.com/store/apps/details?id=mmv.mmtravelE";
+            var baseUniversalLink = "https://bejewelled-alfajores-fe0e2f.netlify.app/open-app?redirect=fake";
+            var universalLink = baseUniversalLink;
+
+            if (urlParams.toString()) {
+                universalLink += "&" + urlParams.toString();
             }
 
-            // Wait 2 seconds, then redirect if the app didn't open
-            setTimeout(function() {
+            var appStoreLink = "https://apps.apple.com/app/id1208542183";
+            var playStoreLink = "https://play.google.com/store/apps/details?id=mmv.mmtravelE";
+
+            var storeLink = /iPad|iPhone|iPod/.test(userAgent) ? appStoreLink : playStoreLink;
+
+            console.log("Redirecting to:", universalLink);
+
+            window.location.href = universalLink;
+
+            setTimeout(function () {
                 window.location.href = storeLink;
             }, 2000);
         });
-    </script> -->
+    </script>
 </head>
+
 <body>
     <p>Redirecting...</p>
 </body>
+
 </html>

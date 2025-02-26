@@ -17,12 +17,29 @@
                                  "#Intent;scheme=https;package=mmv.mmtravelE;end;"; // Intent link for Android
 
             function openAppOrRedirect(appLink, storeLink) {
-                window.location.href = appLink;
+                var isIOS = /iPad|iPhone|iPod/.test(userAgent) && !window.MSStream;
+                
+                if (isIOS) {
+                    // Create a hidden link element and trigger a click instead of direct redirection
+                    var link = document.createElement("a");
+                    link.href = appLink;
+                    link.style.display = "none";
+                    document.body.appendChild(link);
+                    link.click();
 
-                // If the app is not installed, redirect to the store after 1.5 seconds
-                setTimeout(function() {
-                    window.location.href = storeLink;
-                }, 1500);
+                    // Redirect to the App Store after a delay if the app is not installed
+                    setTimeout(function() {
+                        window.location.href = storeLink;
+                    }, 1500);
+                } else {
+                    // Standard redirect for other devices
+                    window.location.href = appLink;
+
+                    // Redirect to the Play Store after a delay if the app is not installed
+                    setTimeout(function() {
+                        window.location.href = storeLink;
+                    }, 1500);
+                }
             }
 
             // Handle iOS devices
@@ -35,7 +52,7 @@
             } 
             // Redirect other devices to a fallback website
             else {
-               // window.location.href = "https://www.michael-mueller-verlag.de";
+                window.location.href = "https://www.michael-mueller-verlag.de";
             }
         });
     </script>

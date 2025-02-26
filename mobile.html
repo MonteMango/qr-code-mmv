@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Redirecting...</title>
+</head>
+<body>
     <script type="text/javascript">
-        document.addEventListener("DOMContentLoaded", function () {
+        document.addEventListener("DOMContentLoaded", function() {
             var userAgent = navigator.userAgent || navigator.vendor || window.opera;
             var currentUrl = window.location.href;
             var urlParams = new URLSearchParams(window.location.search);
@@ -20,23 +21,23 @@
 
             var appStoreLink = "https://apps.apple.com/app/id1208542183";
             var playStoreLink = "https://play.google.com/store/apps/details?id=mmv.mmtravelE";
-
             var storeLink = /iPad|iPhone|iPod/.test(userAgent) ? appStoreLink : playStoreLink;
 
-            console.log("Redirecting to:", universalLink);
-
-            setTimeout(function () {
-                console.log("hello from setTimeout");
+            // 🚀 **Заранее запускаем таймер, который через 2 секунды отправит пользователя в магазин**
+            var redirectTimer = setTimeout(function() {
                 window.location.href = storeLink;
             }, 2000);
 
+            // 🌐 **Перенаправляем пользователя на Universal Link (может открыть приложение)**
             window.location.href = universalLink;
+
+            // 🛑 **Если приложение открылось, мы отменяем редирект в магазин**
+            document.addEventListener("visibilitychange", function() {
+                if (document.hidden) {
+                    clearTimeout(redirectTimer); // Отменяем редирект в App Store / Google Play
+                }
+            });
         });
     </script>
-</head>
-
-<body>
-    <p>Redirecting...</p>
 </body>
-
 </html>

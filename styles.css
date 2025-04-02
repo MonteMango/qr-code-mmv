@@ -18,7 +18,7 @@ body {
 /* QR wrapper to align containers dynamically */
 .qr-wrapper {
     display: flex;
-    justify-content: space-between; /* Авто-отступ между элементами */
+    justify-content: space-around; /* Равномерное распределение пространства */
     align-items: center;
     width: 80%;
     max-width: 800px;
@@ -34,6 +34,7 @@ body {
     padding: 15px;
     border-radius: 10px;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    min-width: 200px; /* Минимальная ширина контейнера */
 }
 
 /* QR Code title styling */
@@ -42,8 +43,10 @@ body {
     font-weight: bold;
     margin-bottom: 10px; /* Отступ между текстом и QR-кодом */
     text-align: center;
+    color: black; /* Указываем черный цвет для заголовков */
 }
 
+/* QR Code image styling */
 .qr-container img {
     max-width: 200px;
     height: auto;

@@ -18,12 +18,13 @@ body {
 /* QR wrapper to align containers dynamically */
 .qr-wrapper {
     display: flex;
-    justify-content: center; /* Centers the QR containers */
+    justify-content: space-between; /* Ensures equal space between the QR codes */
     align-items: center;
-    gap: 10%; /* Adds space between the QR codes */
-    width: 90%;
+    width: 90%; /* Full width of the container but leaves some margin */
     max-width: 800px;
     margin: 0 auto;
+    gap: 400px; /* Set spacing between QR codes to 400px */
+    flex-wrap: wrap; /* Ensures the QR codes wrap to the next line on smaller screens */
 }
 
 /* QR container styling */
@@ -45,10 +46,10 @@ body {
     font-weight: bold;
     margin-bottom: 15px; /* Ensure space between title and QR image */
     text-align: center;
-    color: black !important; /* Ensures that the color is black, even if there are conflicting styles */
-    display: block; /* Ensures the title is block level and visible */
-    background-color: white; /* Adds white background to title for visibility */
-    padding: 5px 10px; /* Adds padding around the title */
+    color: black !important; /* Ensures that the color is black */
+    display: block;
+    background-color: white;
+    padding: 5px 10px;
 }
 
 /* QR Code image styling */

@@ -15,16 +15,15 @@ body {
     font-family: Arial, sans-serif;
 }
 
-/* QR wrapper to align containers dynamically */
+/* QR wrapper to align containers horizontally */
 .qr-wrapper {
     display: flex;
-    justify-content: space-between; /* Ensures equal space between the QR codes */
+    justify-content: space-between; /* Distribute the QR codes evenly with the defined gap */
     align-items: center;
     width: 90%; /* Full width of the container but leaves some margin */
-    max-width: 800px;
+    max-width: 1000px; /* You can adjust max-width to ensure the layout fits well */
     margin: 0 auto;
-    gap: 400px; /* Set spacing between QR codes to 400px */
-    flex-wrap: wrap; /* Ensures the QR codes wrap to the next line on smaller screens */
+    gap: 400px; /* Set space between QR codes to 400px */
 }
 
 /* QR container styling */

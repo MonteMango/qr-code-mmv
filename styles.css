@@ -18,9 +18,10 @@ body {
 /* QR wrapper to align containers dynamically */
 .qr-wrapper {
     display: flex;
-    justify-content: space-around; /* Равномерное распределение пространства */
+    justify-content: center; /* Центрируем элементы */
     align-items: center;
-    width: 80%;
+    gap: 10%; /* Авторасстояние между QR-кодами */
+    width: 90%;
     max-width: 800px;
     margin: 0 auto;
 }
@@ -28,22 +29,23 @@ body {
 /* QR container styling */
 .qr-container {
     display: flex;
-    flex-direction: column; /* Размещаем элементы вертикально */
+    flex-direction: column;
     align-items: center;
     background: white;
     padding: 15px;
     border-radius: 10px;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
-    min-width: 200px; /* Минимальная ширина контейнера */
+    min-width: 200px;
 }
 
 /* QR Code title styling */
 .qr-title {
     font-size: 18px;
     font-weight: bold;
-    margin-bottom: 10px; /* Отступ между текстом и QR-кодом */
+    margin-bottom: 10px;
     text-align: center;
-    color: black; /* Указываем черный цвет для заголовков */
+    color: black; /* Делаем заголовок черным */
+    display: block; /* Гарантируем, что текст не исчезает */
 }
 
 /* QR Code image styling */

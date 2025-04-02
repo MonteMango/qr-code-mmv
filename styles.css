@@ -18,12 +18,18 @@ body {
 /* QR wrapper to align containers horizontally */
 .qr-wrapper {
     display: flex;
-    justify-content: space-between; /* Distribute the QR codes evenly with the defined gap */
+    justify-content: space-between; /* Default for multiple QR codes */
     align-items: center;
     width: 90%; /* Full width of the container but leaves some margin */
     max-width: 1000px; /* You can adjust max-width to ensure the layout fits well */
     margin: 0 auto;
     gap: 400px; /* Set space between QR codes to 400px */
+}
+
+/* If only one QR code is available, center it */
+.qr-wrapper.single-qr {
+    justify-content: center;
+    gap: 0;
 }
 
 /* QR container styling */

@@ -20,6 +20,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    gap: 20px; /* Отступ между QR-кодами */
     background: white;
     padding: 15px;
     border-radius: 10px;

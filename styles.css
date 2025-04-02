@@ -15,12 +15,21 @@ body {
     font-family: Arial, sans-serif;
 }
 
+/* QR wrapper to align containers dynamically */
+.qr-wrapper {
+    display: flex;
+    justify-content: space-between; /* Автоматическое распределение пространства */
+    align-items: center;
+    width: 80%; /* Задаем ширину, чтобы элементы не прижимались к краям */
+    max-width: 800px; /* Ограничиваем максимальную ширину */
+    margin: 0 auto; /* Центрируем контейнер */
+}
+
 /* QR container styling */
 .qr-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 20px; /* Отступ между QR-кодами */
     background: white;
     padding: 15px;
     border-radius: 10px;
@@ -31,6 +40,7 @@ body {
     max-width: 200px;
     height: auto;
 }
+
 
 /* Container styling for mobile.html */
 .container {

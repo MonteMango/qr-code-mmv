@@ -18,9 +18,9 @@ body {
 /* QR wrapper to align containers dynamically */
 .qr-wrapper {
     display: flex;
-    justify-content: center; /* Центрируем элементы */
+    justify-content: center; /* Centers the QR containers */
     align-items: center;
-    gap: 10%; /* Авторасстояние между QR-кодами */
+    gap: 10%; /* Adds space between the QR codes */
     width: 90%;
     max-width: 800px;
     margin: 0 auto;
@@ -29,23 +29,26 @@ body {
 /* QR container styling */
 .qr-container {
     display: flex;
-    flex-direction: column;
+    flex-direction: column; /* Places text above the image */
     align-items: center;
     background: white;
     padding: 15px;
     border-radius: 10px;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
     min-width: 200px;
+    width: 200px; /* Set fixed width for QR containers */
 }
 
 /* QR Code title styling */
 .qr-title {
     font-size: 18px;
     font-weight: bold;
-    margin-bottom: 10px;
+    margin-bottom: 15px; /* Ensure space between title and QR image */
     text-align: center;
-    color: black; /* Делаем заголовок черным */
-    display: block; /* Гарантируем, что текст не исчезает */
+    color: black !important; /* Ensures that the color is black, even if there are conflicting styles */
+    display: block; /* Ensures the title is block level and visible */
+    background-color: white; /* Adds white background to title for visibility */
+    padding: 5px 10px; /* Adds padding around the title */
 }
 
 /* QR Code image styling */
